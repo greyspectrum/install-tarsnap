@@ -36,6 +36,7 @@ fi
 # Downloading dependencies
 echo -e '\n==Installing dependencies...'
 
+apt-get update
 apt-get install gcc libc6-dev make libssl-dev zlib1g-dev e2fslibs-dev
 
 # Download Tarsnap
