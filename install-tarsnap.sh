@@ -9,12 +9,6 @@
 # :version: 0.1.0
 ##############################################################################
 
-# Check for root
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root." 1>&2
-    exit 1
-fi
-
 # Fetch Tarsnap signing keys
 echo -e '\n==Fetching Tarsnap signing keys...'
 
@@ -33,11 +27,13 @@ else
     exit 1
 fi
 
+rm fingerprint
+
 # Downloading dependencies
 echo -e '\n==Installing dependencies...'
 
-apt-get update
-apt-get install gcc libc6-dev make libssl-dev zlib1g-dev e2fslibs-dev
+sudo apt-get update
+sudo apt-get install gcc libc6-dev make libssl-dev zlib1g-dev e2fslibs-dev
 
 # Download Tarsnap
 echo -e '\n==Downloading Tarsnap...'
@@ -50,12 +46,12 @@ cd .tarsnap
 
 curl -O https://www.tarsnap.com/download/tarsnap-autoconf-1.0.37.tgz
 
-curl -O https://www.tarsnap.com/downolad/tarsnap-sigs-1.0.37.asc
+curl -O https://www.tarsnap.com/download/tarsnap-sigs-1.0.37.asc
 
 # Verify Tarsnap
 echo -e '\n==Verifying Tarsnap download...'
 
-if gpg --verify gpg --verify tarsnap-sigs-1.0.37.asc; then
+if gpg --verify tarsnap-sigs-1.0.37.asc; then
     echo -e '\n==Good signature on sha256 sum, verifying checksum...'
 else
     echo -e '\n==ERROR: BAD GPG SIGNATURE. ABORTING...'
@@ -65,6 +61,7 @@ else
 fi
 
 sed '4q;d' tarsnap-sigs-1.0.37.asc | sed 's/^.......................................//' > sha2sum
+sed -i '1s/$/  tarsnap-autoconf-1.0.37.tgz/' sha2sum
 
 if sha256sum tarsnap-autoconf-1.0.37.tgz | diff -q sha2sum -; then
     echo -e '\n==Verified. Good sha256 sum.'
@@ -92,8 +89,6 @@ mv \
     /usr/local/etc/tarsnap.conf
 
 cd
-
-rm fingerprint
 
 # Open Tarsnap registration page
 echo -e '\n==Opening Tarsnap registration...'
