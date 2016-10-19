@@ -83,8 +83,9 @@ echo -e '\n==Compiling Tarsnap...'
 cd tarsnap-autoconf-1.0.37
 ./configure
 make all
+sudo make install
 
-mv \
+sudo mv \
     /usr/local/etc/tarsnap.conf.sample \
     /usr/local/etc/tarsnap.conf
 
