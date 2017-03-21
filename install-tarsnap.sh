@@ -92,7 +92,7 @@ sudo mv \
 cd
 
 # Notify user to register
-echo -e '\n==Installation complete.\n\n====> If you do not already have a Tarsnap account, you must create one at https://www.tarsnap.com/register.cgi and deposit funds in your account.\n\n'
+echo -e '\n==Installation complete.\n\n====> If you do not already have a Tarsnap account, you must create one at https://www.tarsnap.com/register.cgi and deposit funds in your account.\n'
 
 # Generate Tarsnap key
 echo -e '====> Enter the email address you used to register your Tarsnap account, then press [ENTER]: '
@@ -113,11 +113,11 @@ fi
 
 # Create backup script
 echo -e '#!/bin/sh\n/usr/local/bin/tarsnap -c \ \n    -f "$(uname -n)-$(date +%Y-%m-%d_%H-%M-%S)" \ \n    /' > tarsnap-backup.sh
-chmod +x tarsnap-backup.sh
+chmod u+x tarsnap-backup.sh
 
 # Request backup
 while true; do
-    read -p "Do you wish to backup this machine now?[y/n] " yn
+    read -p "\n==Do you wish to backup this machine now?[y/n] " yn
     case $yn in
         [Yy]* ) ./tarsnap-backup.sh; break;;
         [Nn]* ) exit;;
