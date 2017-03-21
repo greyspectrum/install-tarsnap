@@ -119,7 +119,7 @@ chmod u+x tarsnap-backup.sh
 while true; do
     read -p "==Do you wish to backup this machine now?[y/n] " yn
     case $yn in
-        [Yy]* ) ./root/tarsnap-backup.sh; break;;
+        [Yy]* ) ./tarsnap-backup.sh; break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
