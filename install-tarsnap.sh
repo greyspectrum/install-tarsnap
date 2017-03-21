@@ -95,12 +95,36 @@ cd
 echo -e '\n==Installation complete.\n\n====> If you do not already have a Tarsnap account, you must create one at https://www.tarsnap.com/register.cgi and deposit funds in your account.\n\n'
 
 # Generate Tarsnap key
-echo -e 'Enter the email address you used to register your Tarsnap account, then press [ENTER]: '
+echo -e '====> Enter the email address you used to register your Tarsnap account, then press [ENTER]: '
 read email
-echo -e 'Enter a name for this machine, which will be displayed in your Tarsnap account reports so that you know how much data each machine is storing, then press [ENTER]: '
-read name
 
 sudo tarsnap-keygen \
 	--keyfile /root/tarsnap.key \
 	--user $email \
-	--machine $name
+	--machine $HOSTNAME
+
+cd
+if test -e tarsnap.key ; then
+    echo -e '\n==Your Tarsnap key has been generated. The key is stored at /root/tarsnap.key.'
+    echo -e '\n==IMPORTANT: Please take a moment to back up your Tarsnap key, in a safe place. Without your Tarsnap key, you will be unable to restore backups from the Tarsnap system.'
+else
+    echo -e '\n==ERROR: Tarsnap key not found.'
+fi
+
+# Create backup script
+echo -e '#!/bin/sh\n/usr/local/bin/tarsnap -c \ \n    -f "$(uname -n)-$(date +%Y-%m-%d_%H-%M-%S)" \ \n    /' > tarsnap-backup.sh
+chmod +x tarsnap-backup.sh
+
+# Request backup
+while true; do
+    read -p "Do you wish to backup this machine now?[y/n] " yn
+    case $yn in
+        [Yy]* ) ./tarsnap-backup.sh; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+# Test backup
+
+tarsnap --list-archives | sort
