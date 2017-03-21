@@ -92,9 +92,9 @@ sudo mv \
 cd
 
 # Notify user to register
-
 echo -e '\n==Installation complete.\n\n====> If you do not already have a Tarsnap account, you must create one at https://www.tarsnap.com/register.cgi and deposit funds in your account.\n\n'
 
+# Generate Tarsnap key
 echo -e 'Enter the email address you used to register your Tarsnap account, then press [ENTER]: '
 read email
 echo -e 'Enter a name for this machine, which will be displayed in your Tarsnap account reports so that you know how much data each machine is storing, then press [ENTER]: '
