@@ -93,4 +93,4 @@ cd
 
 # Notify user to register
 
-echo -e '\n==Installation complete.\n\n====>If you do not already have a Tarsnap account, you must create one at https://www.tarsnap.com/register.cgi and deposit funds in your account.\n\n'
+echo -e '\n==Installation complete.\n\n====> If you do not already have a Tarsnap account, you must create one at https://www.tarsnap.com/register.cgi and deposit funds in your account.\n\n'
