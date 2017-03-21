@@ -5,22 +5,22 @@
 # -----------------
 #
 # :author: greyspectrum
-# :date: 19 October 2016
+# :date: 20 March 2017
 # :version: 0.1.0
 ##############################################################################
 
 # Fetch Tarsnap signing keys
 echo -e '\n==Fetching Tarsnap signing keys...'
 
-gpg --recv-keys --keyserver keys.gnupg.net 0xBC5CFA093DA2BCE3
+gpg --recv-keys --keyserver keys.gnupg.net 0xDF27AF8EAB663109
 
 # Verifying Tarsnap signing key fingerprint
 echo -e '\n==Verifying Tarsnap signing key fingerprint...'
 
-echo -e 'pub   4096R/3DA2BCE3 2016-02-18 [expires: 2017-02-17]\n      Key fingerprint = ECAE BA77 D19D 1EE0 CAF1  628F BC5C FA09 3DA2 BCE3\nuid                  Tarsnap source code signing key (Colin Percival) <cperciva@tarsnap.com>\n' > fingerprint
+echo -e 'pub   4096R/AB663109 2017-01-06 [expires: 2018-02-01]\n      Key fingerprint = 16B0 D62B DC0E D244 B77B  DC93 DF27 AF8E AB66 3109\nuid                  Tarsnap source code signing key (Tarsnap Backup Inc.) <cperciva@tarsnap.com>\n' > fingerprint
 
-if gpg --fingerprint 0xBC5CFA093DA2BCE3 | diff -q fingerprint -; then
-    echo -e '\n==Verified. The Tarsnap signing key provided by the keyserver, 0xBC5CFA093DA2BCE3, has the expected fingerprint.\nKey Fingerprint = ECAE BA77 D19D 1EE0 CAF1  628F BC5C FA09 3DA2 BCE3'
+if gpg --fingerprint 0xDF27AF8EAB663109 | diff -q fingerprint -; then
+    echo -e '\n==Verified. The Tarsnap signing key provided by the keyserver, 0xDF27AF8EAB663109, has the expected fingerprint.\nKey Fingerprint = 16B0 D62B DC0E D244 B77B  DC93 DF27 AF8E AB66 3109'
 else
     echo -e '\n==ERROR: THE KEY PROVIDED BY THE KEYSERVER HAS RETURNED AN UNEXPECTED FINGERPRINT. ABORTING...'
     rm fingerprint
