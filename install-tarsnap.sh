@@ -112,19 +112,19 @@ else
 fi
 
 # Create backup script
-echo -e '#!/bin/sh\n/usr/local/bin/tarsnap -c \ \n    -f "$(uname -n)-$(date +%Y-%m-%d_%H-%M-%S)" \ \n    /' > tarsnap-backup.sh
+echo -e '#!/bin/sh\n/usr/local/bin/tarsnap -c -f backup --print-stats\ \n    -f "$(uname -n)-$(date +%Y-%m-%d_%H-%M-%S)" \ \n    /' > tarsnap-backup.sh
 chmod u+x tarsnap-backup.sh
 
 # Request backup
 while true; do
     read -p "\n==Do you wish to backup this machine now?[y/n] " yn
     case $yn in
-        [Yy]* ) ./tarsnap-backup.sh; break;;
+        [Yy]* ) sudo ./tarsnap-backup.sh; break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 # Test backup
-
+echo "\n==Printing stats..."
 tarsnap --list-archives | sort
