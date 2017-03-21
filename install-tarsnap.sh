@@ -106,7 +106,7 @@ sudo tarsnap-keygen \
 cd
 if test -e tarsnap.key ; then
     echo -e '\n==Your Tarsnap key has been generated. The key is stored at /root/tarsnap.key.'
-    echo -e '\n==IMPORTANT: Please take a moment to back up your Tarsnap key, in a safe place. Without your Tarsnap key, you will be unable to restore backups from the Tarsnap system.'
+    echo -e '\n==IMPORTANT: Please take a moment to back up your Tarsnap key, in a safe place. Without your Tarsnap key, you will be unable to restore backups from the Tarsnap system.\n'
 else
     echo -e '\n==ERROR: Tarsnap key not found.'
 fi
@@ -117,7 +117,7 @@ chmod u+x tarsnap-backup.sh
 
 # Request backup
 while true; do
-    read -p "\n==Do you wish to backup this machine now?[y/n] " yn
+    read -p "==Do you wish to backup this machine now?[y/n] " yn
     case $yn in
         [Yy]* ) sudo ./tarsnap-backup.sh; break;;
         [Nn]* ) exit;;
