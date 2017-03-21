@@ -109,6 +109,7 @@ if test -e tarsnap.key ; then
     echo -e '\n==IMPORTANT: Please take a moment to back up your Tarsnap key, in a safe place. Without your Tarsnap key, you will be unable to restore backups from the Tarsnap system.\n'
 else
     echo -e '\n==ERROR: Tarsnap key not found.'
+    exit 1
 fi
 
 # Create backup script
@@ -120,11 +121,11 @@ while true; do
     read -p "==Do you wish to backup this machine now?[y/n] " yn
     case $yn in
         [Yy]* ) ./tarsnap-backup.sh; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) exit 1;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 # Test backup
-echo -e '\n==Printing stats...'
+echo -e '\n==Backup successful! Printing stats...'
 tarsnap --list-archives | sort
