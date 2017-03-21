@@ -126,5 +126,5 @@ while true; do
 done
 
 # Test backup
-echo "\n==Printing stats..."
+echo -e '\n==Printing stats...'
 tarsnap --list-archives | sort
