@@ -112,7 +112,7 @@ else
 fi
 
 # Create backup script
-echo -e '#!/bin/sh\n/usr/local/bin/tarsnap -c -f backup --print-stats\ \n    -f "$(uname -n)-$(date +%Y-%m-%d_%H-%M-%S)" \ \n    /' > tarsnap-backup.sh
+echo -e '#!/bin/sh\n/usr/local/bin/tarsnap -c \ \n    -f "$(uname -n)-$(date +%Y-%m-%d_%H-%M-%S)" \ \n    /' > tarsnap-backup.sh
 chmod u+x tarsnap-backup.sh
 
 # Request backup
