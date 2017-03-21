@@ -91,9 +91,6 @@ sudo mv \
 
 cd
 
-# Open Tarsnap registration page
-echo -e '\n==Opening Tarsnap registration...'
+# Notify user to register
 
-xdg-open https://www.tarsnap.com/register.cgi
-
-echo -e '\n==Installation complete.'
+echo -e '\n==Installation complete.\n\nIf you do not already have a Tarsnap account, you must create one at https://www.tarsnap.com/register.cgi and deposit funds in your account.'
