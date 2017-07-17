@@ -33,7 +33,7 @@ rm fingerprint
 echo -e '\n==Installing dependencies...'
 
 sudo apt-get update
-sudo apt-get install gcc libc6-dev make libssl-dev zlib1g-dev e2fslibs-dev
+sudo apt-get -y install gcc libc6-dev make libssl-dev zlib1g-dev e2fslibs-dev
 
 # Download Tarsnap
 echo -e '\n==Downloading Tarsnap...'
